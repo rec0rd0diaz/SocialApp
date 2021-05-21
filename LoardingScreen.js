@@ -1,0 +1,33 @@
+import React from "react"
+import {View, Text, StyleSheet, activityIndicator} from 'react-native'
+/*import * as firebase from 'firebase'*/
+import firebase from "firebase/app";
+require("firebase/auth");
+
+
+export default class LoardingScreen extends React.Component {
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user=>{
+            this.props.navigation.navigate(user ? "App": "Auth")
+        });
+    }
+
+
+render() {
+    return (
+        <View style={styles.container}>
+            <Text> Loarding...</Text>
+            <ActivityIndicator size = "large"></ActivityIndicator>
+
+        </View>
+    );  
+}
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        justifyContent: "center",
+        alignItems: "center"
+    }
+});
